@@ -91,4 +91,28 @@ public class FileDiverTest {
 				actualFoundDirChildren);
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void test_arguments_error_if0() {
+		File testDir = new File(this.getClass().getResource("testDir").getFile());
+
+		FileDiver.getInstance().dive(testDir, new FileDiverFunction() {
+			@Override
+			public boolean apply(File file) throws Exception {
+				return true;
+			}
+		}, 0);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void test_arguments_error_ifMinus2() {
+		File testDir = new File(this.getClass().getResource("testDir").getFile());
+
+		FileDiver.getInstance().dive(testDir, new FileDiverFunction() {
+			@Override
+			public boolean apply(File file) throws Exception {
+				return true;
+			}
+		}, -2);
+	}
+
 }
