@@ -1,6 +1,8 @@
 package pkg;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This processes files and directories recursively.
@@ -59,6 +61,43 @@ public class FileDiver {
 			throw new IllegalArgumentException("targetDir must be directory");
 		}
 		this.recursiveDive(targetDir, fileDiverFunction, depthLimit, 1);
+	}
+
+	/**
+	 * Collect files and directories using {@code FileDiver#dive(File, FileDiverFunction)}.
+	 *
+	 * @param targetDir
+	 * @return files and directories collection
+	 */
+	public List<File> getAll(File targetDir) {
+		List<File> allList = new ArrayList<>();
+		this.dive(targetDir, new FileDiverFunction() {
+			@Override
+			public boolean apply(File file) throws Exception {
+				allList.add(file);
+				return true;
+			}
+		});
+		return allList;
+	}
+
+	/**
+	 * On limited depth, collect files and directories using {@code FileDiver#dive(File, FileDiverFunction, int)}.
+	 *
+	 * @param targetDir
+	 * @param depthLimit starts by 1
+	 * @return files and directories collection
+	 */
+	public List<File> getAll(File targetDir, int depthLimit) {
+		List<File> allList = new ArrayList<>();
+		this.dive(targetDir, new FileDiverFunction() {
+			@Override
+			public boolean apply(File file) throws Exception {
+				allList.add(file);
+				return true;
+			}
+		}, depthLimit);
+		return allList;
 	}
 
 	protected void recursiveDive(File targetDir, FileDiverFunction fileDiverFunction, int depthLimit, int currentDepth) {
