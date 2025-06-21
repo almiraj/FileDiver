@@ -70,34 +70,15 @@ public class FileDiver {
 	 * @return files and directories collection
 	 */
 	public List<File> getAll(File targetDir) {
-		List<File> allList = new ArrayList<>();
+		List<File> allFiles = new ArrayList<>();
 		this.dive(targetDir, new FileDiverFunction() {
 			@Override
 			public boolean apply(File file) throws Exception {
-				allList.add(file);
+				allFiles.add(file);
 				return true;
 			}
 		});
-		return allList;
-	}
-
-	/**
-	 * On limited depth, collect files and directories using {@code FileDiver#dive(File, FileDiverFunction, int)}.
-	 *
-	 * @param targetDir
-	 * @param depthLimit starts by 1
-	 * @return files and directories collection
-	 */
-	public List<File> getAll(File targetDir, int depthLimit) {
-		List<File> allList = new ArrayList<>();
-		this.dive(targetDir, new FileDiverFunction() {
-			@Override
-			public boolean apply(File file) throws Exception {
-				allList.add(file);
-				return true;
-			}
-		}, depthLimit);
-		return allList;
+		return allFiles;
 	}
 
 	protected void recursiveDive(File targetDir, FileDiverFunction fileDiverFunction, int depthLimit, int currentDepth) {

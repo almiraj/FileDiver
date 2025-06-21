@@ -138,23 +138,4 @@ public class FileDiverTest {
 			), allList);
 	}
 
-	@Test
-	public void test_getAll_limited() {
-		File testDir = new File(this.getClass().getResource("testDir").getFile());
-		List<File> allList = FileDiver.getInstance().getAll(testDir, 2);
-		System.out.println(allList);
-		assertEquals(Arrays.asList(
-				new File(testDir, "bar.txt"),
-				new File(testDir, "buz.txt"),
-				new File(testDir, "foo.txt"),
-				new File(testDir, "testDir2_1"),
-				new File(testDir, "testDir2_1/foo_bar.txt"),
-				new File(testDir, "testDir2_1/foo_buzz.txt"),
-				new File(testDir, "testDir2_1/testDir3"),
-				new File(testDir, "testDir2_2"),
-				new File(testDir, "testDir2_2/abcDir"),
-				new File(testDir, "testDir2_2/bar3.txt")
-			), allList);
-	}
-
 }
