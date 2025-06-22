@@ -116,9 +116,9 @@ public class FileDiverTest {
 	}
 
 	@Test
-	public void test_getAll() {
+	public void test_getAllFiles() {
 		File testDir = new File(this.getClass().getResource("testDir").getFile());
-		List<File> allList = FileDiver.getInstance().getAll(testDir);
+		List<File> allList = FileDiver.getInstance().getAllFiles(testDir);
 		assertEquals(Arrays.asList(
 				new File(testDir, "bar.txt"),
 				new File(testDir, "buz.txt"),

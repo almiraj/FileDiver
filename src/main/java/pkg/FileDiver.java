@@ -14,6 +14,7 @@ public class FileDiver {
 	/**
 	 * Normally, instantiated with anonymous class, or implemented by lambda.
 	 */
+	@FunctionalInterface
 	public static interface FileDiverFunction {
 		/**
 		 * Callback function.
@@ -69,7 +70,7 @@ public class FileDiver {
 	 * @param targetDir
 	 * @return files and directories collection
 	 */
-	public List<File> getAll(File targetDir) {
+	public List<File> getAllFiles(File targetDir) {
 		List<File> allFiles = new ArrayList<>();
 		this.dive(targetDir, new FileDiverFunction() {
 			@Override
